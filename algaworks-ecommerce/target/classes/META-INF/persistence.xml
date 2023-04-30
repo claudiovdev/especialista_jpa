@@ -6,9 +6,9 @@
     <persistence-unit name="Ecommerce-PU">
         <properties>
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://50.116.86.53/engmsp47_algaworks_especialista_jpa" />
-            <property name="javax.persistence.jdbc.user" value="engmsp47_vinicius_adm" />
-            <property name="javax.persistence.jdbc.password" value="vinicius123" />
+                      value="jdbc:mysql://localhost/algaworks_ecommerce?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="root123" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
