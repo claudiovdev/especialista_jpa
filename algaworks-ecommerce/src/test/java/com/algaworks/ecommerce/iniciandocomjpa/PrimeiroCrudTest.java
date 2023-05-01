@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.iniciandoComJpa;
+package com.algaworks.ecommerce.iniciandocomjpa;
 
 import com.algaworks.ecommerce.EntityManangerTest;
 import com.algaworks.ecommerce.model.Cliente;
@@ -12,7 +12,7 @@ public class PrimeiroCrudTest extends EntityManangerTest {
     public void inserirRegistro() {
         Cliente cliente = new Cliente();
 
-        cliente.setId(3);
+
         cliente.setNome("José Lucas");
 
         entityManager.getTransaction().begin();

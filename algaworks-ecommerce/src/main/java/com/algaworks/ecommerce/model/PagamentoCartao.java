@@ -1,27 +1,27 @@
 package com.algaworks.ecommerce.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "pagamento_cartao")
+public class PagamentoCartao {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "pedido_id")
+    private Integer pedidoId;
+    private StatusPagamento status;
+    private String numero;
 
-    private String nome;
-
-    @Enumerated(EnumType.STRING)
-    private SexoCliente sexo;
 
 }

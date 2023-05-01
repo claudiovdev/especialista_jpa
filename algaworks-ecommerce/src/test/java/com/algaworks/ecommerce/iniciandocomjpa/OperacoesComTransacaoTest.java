@@ -1,7 +1,8 @@
-package com.algaworks.ecommerce.iniciandoComJpa;
+package com.algaworks.ecommerce.iniciandocomjpa;
 
 import com.algaworks.ecommerce.EntityManangerTest;
 import com.algaworks.ecommerce.model.Produto;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -14,7 +15,6 @@ public class OperacoesComTransacaoTest extends EntityManangerTest {
     public  void atualizarObjeto(){
         Produto produto = new Produto();
 
-        produto.setId(1);
         produto.setNome("Kindle Paperwhite");
         produto.setDescricao("Conheça o novo");
         produto.setPreco(new BigDecimal(599));
@@ -61,7 +61,7 @@ public class OperacoesComTransacaoTest extends EntityManangerTest {
     public void inserindoPrimeiroObjeto(){
 
         Produto produto = new Produto();
-        produto.setId(2);
+
         produto.setNome("Caneta");
         produto.setDescricao("Caneta azul Bic");
         produto.setPreco(new BigDecimal(1.5));
@@ -79,23 +79,22 @@ public class OperacoesComTransacaoTest extends EntityManangerTest {
     }
 
     @Test
-    public void inserindoPObjetoComMerge(){
+    public void inserindoObjetoComMerge(){
 
         Produto produto = new Produto();
-        produto.setId(4);
-        produto.setNome("Microfone Rode");
-        produto.setDescricao("A Melhor qualidade do som");
+
+        produto.setNome("Microfone Rode Videmic");
+        produto.setDescricao("A melhor qualidade de som.");
         produto.setPreco(new BigDecimal(1000));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produto);
+        Produto produtoSalvo = entityManager.merge(produto);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        Produto produtoExistente = entityManager.find(Produto.class, produto.getId());
-
-        assertNotNull(produtoExistente);
+        Produto produtoVerificacao = entityManager.find(Produto.class, produtoSalvo.getId());
+        Assert.assertNotNull(produtoVerificacao);
 
     }
 
@@ -103,7 +102,7 @@ public class OperacoesComTransacaoTest extends EntityManangerTest {
     public void mostrarDiferencaPersisteMerge(){
 
         Produto produtoPersiste = new Produto();
-        produtoPersiste.setId(5);
+
         produtoPersiste.setNome("Smarphone One Plus");
         produtoPersiste.setDescricao("O melhor já produzido");
         produtoPersiste.setPreco(new BigDecimal(2000));
@@ -119,7 +118,6 @@ public class OperacoesComTransacaoTest extends EntityManangerTest {
 
         Produto produtoMerge = new Produto();
 
-        produtoMerge.setId(6);
         produtoMerge.setNome("Notebook Dell");
         produtoMerge.setDescricao("O melhor já produzido");
         produtoMerge.setPreco(new BigDecimal(2000));

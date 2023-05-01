@@ -1,27 +1,28 @@
 package com.algaworks.ecommerce.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "nota_fiscal")
+public class NotaFiscal {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private String nome;
-
-    @Enumerated(EnumType.STRING)
-    private SexoCliente sexo;
+    @Column(name = "pedido_id")
+    private Integer pedidoId;
+    private String xml;
+    @Column(name = "data_emissao")
+    private Date dataEmissao;
 
 }

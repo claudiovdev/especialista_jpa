@@ -1,6 +1,5 @@
 package com.algaworks.ecommerce.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,17 +10,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "estoque")
+public class Estoque {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private String nome;
-
-    @Enumerated(EnumType.STRING)
-    private SexoCliente sexo;
+    @Column(name = "produto_id")
+    private Integer produtoId;
+    private Integer quantidade;
 
 }

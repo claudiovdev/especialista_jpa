@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.iniciandoComJpa;
+package com.algaworks.ecommerce.iniciandocomjpa;
 
 import com.algaworks.ecommerce.EntityManangerTest;
 import com.algaworks.ecommerce.model.Produto;
