@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.iniciandocomjpa;
+package com.algaworks.ecommerce.utils;
 
 import com.algaworks.ecommerce.model.Produto;
 
