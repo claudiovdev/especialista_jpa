@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,8 +18,17 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
-    @Column(name = "categoria_pai_id")
-    private Integer categoriaPaiId;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_pai_id")
+    private Categoria categoriaPaiId;
+
+    @OneToMany(mappedBy = "categoriaPaiId")
+    private List<Categoria> categorias;
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<Produto> produtos;
 
 }

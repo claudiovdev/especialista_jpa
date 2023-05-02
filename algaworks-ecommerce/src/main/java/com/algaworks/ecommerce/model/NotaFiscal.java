@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,9 +18,13 @@ public class NotaFiscal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-    private String xml;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+    @Lob
+    private byte[] xml;
+
     @Column(name = "data_emissao")
     private Date dataEmissao;
 
