@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.jpql;
 
 import com.algaworks.ecommerce.EntityManangerTest;
+import com.algaworks.ecommerce.dto.ProdutoDto;
 import com.algaworks.ecommerce.model.Cliente;
 import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.Produto;
@@ -12,6 +13,26 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class BasicoJpql extends EntityManangerTest {
+
+    @Test
+    public void projetarNoDto(){
+        String jpql = "select new com.algaworks.ecommerce.dto.ProdutoDto(p.id, p.nome) from Produto p";
+        TypedQuery<ProdutoDto> typedQuery = entityManager.createQuery(jpql,ProdutoDto.class);
+
+        List<ProdutoDto> list = typedQuery.getResultList();
+
+        Assert.assertFalse(list.isEmpty());
+    }
+    @Test
+    public void projetarResultado(){
+
+        String jpql = "select p.id, p.nome from Produto p";
+
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+
+        List<Object[]> list = typedQuery.getResultList();
+        Assert.assertTrue(list.get(0).length == 2);
+    }
 
     @Test
     public void selecionarAtributoParaRetorno(){
