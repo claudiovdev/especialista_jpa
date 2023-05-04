@@ -1,6 +1,6 @@
 package com.algaworks.ecommerce.relacionamentos;
 
-import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.EntityManangerTest;
 import com.algaworks.ecommerce.model.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,17 +8,17 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class RelacionamentoOneToManyTest extends EntityManagerTest {
+public class RelacionamentoOneToManyTest extends EntityManangerTest {
 
     @Test
-    public void verificarRelacionamento() {
+    public void verificarRelacionamento(){
         Cliente cliente = entityManager.find(Cliente.class, 1);
 
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusPedido.AGUARDANDO);
-        pedido.setDataCriacao(LocalDateTime.now());
-        pedido.setTotal(BigDecimal.TEN);
+        pedido.setDataPedido(LocalDateTime.now());
         pedido.setCliente(cliente);
+        pedido.setTotal(BigDecimal.TEN);
 
         entityManager.getTransaction().begin();
         entityManager.persist(pedido);
@@ -26,23 +26,22 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        Cliente clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
+        Cliente clienteVerificacao = entityManager.find(Cliente.class, pedido.getId());
         Assert.assertFalse(clienteVerificacao.getPedidos().isEmpty());
     }
 
     @Test
-    public void verificarRelacionamentoPedido() {
+    public void verificarRelacionamentoItemPedido() {
         Cliente cliente = entityManager.find(Cliente.class, 1);
         Produto produto = entityManager.find(Produto.class, 1);
 
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusPedido.AGUARDANDO);
-        pedido.setDataCriacao(LocalDateTime.now());
+        pedido.setDataPedido(LocalDateTime.now());
         pedido.setTotal(BigDecimal.TEN);
         pedido.setCliente(cliente);
 
         ItemPedido itemPedido = new ItemPedido();
-        itemPedido.setId(new ItemPedidoId());
         itemPedido.setPrecoProduto(produto.getPreco());
         itemPedido.setQuantidade(1);
         itemPedido.setPedido(pedido);
@@ -56,6 +55,7 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest {
         entityManager.clear();
 
         Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
-        Assert.assertFalse(pedidoVerificacao.getItens().isEmpty());
+        Assert.assertFalse(pedidoVerificacao.getListaPedidos().isEmpty());
     }
+
 }

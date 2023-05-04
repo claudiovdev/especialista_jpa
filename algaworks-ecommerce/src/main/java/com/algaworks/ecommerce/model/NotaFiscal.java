@@ -5,28 +5,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @Table(name = "nota_fiscal")
-public class NotaFiscal extends EntidadeBaseInteger {
+public class NotaFiscal extends EntidadeBaseInteger{
 
-    @MapsId
+
     @OneToOne(optional = false)
-    @JoinColumn(name = "pedido_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_nota_fiscal_pedido"))
-//    @JoinTable(name = "pedido_nota_fiscal",
-//            joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true),
-//            inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    @Column(nullable = false)
     @Lob
     private byte[] xml;
 
-    @Column(name = "data_emissao", nullable = false)
+    @Column(name = "data_emissao")
     private Date dataEmissao;
+
 }
