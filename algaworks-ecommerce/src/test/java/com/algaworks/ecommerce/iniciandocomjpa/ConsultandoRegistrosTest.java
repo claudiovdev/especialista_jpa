@@ -1,33 +1,28 @@
 package com.algaworks.ecommerce.iniciandocomjpa;
 
-import com.algaworks.ecommerce.EntityManangerTest;
+import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Produto;
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-public class ConsultandoRegistrosTest extends EntityManangerTest {
-
+public class ConsultandoRegistrosTest extends EntityManagerTest {
 
     @Test
-    public void buscarPorIdentificador(){
+    public void busarPorIdentificador() {
         Produto produto = entityManager.find(Produto.class, 1);
+//        Produto produto = entityManager.getReference(Produto.class, 1);
 
-        assertNotNull(produto);
-        assertEquals("Kindle", produto.getNome());
+        Assert.assertNotNull(produto);
+        Assert.assertEquals("Kindle", produto.getNome());
     }
 
     @Test
-    public void atualizarReferencia(){
+    public void atualizarAReferencia() {
         Produto produto = entityManager.find(Produto.class, 1);
-
-        produto.setNome("Boneco");
+        produto.setNome("Microfone Samson");
 
         entityManager.refresh(produto);
 
-        assertEquals("Kindle", produto.getNome());
-
-
+        Assert.assertEquals("Kindle", produto.getNome());
     }
 }

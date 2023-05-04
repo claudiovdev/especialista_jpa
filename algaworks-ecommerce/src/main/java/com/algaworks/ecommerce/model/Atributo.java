@@ -5,16 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 
 @Getter
 @Setter
-@Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class Atributo {
 
+    @Column(length = 100, nullable = false)
     private String nome;
 
     private String valor;

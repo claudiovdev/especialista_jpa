@@ -6,23 +6,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "pagamento_boleto")
-public class PagamentoBoleto {
+@DiscriminatorValue("boleto")
+@Entity
+public class PagamentoBoleto extends Pagamento {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
-    @Column(name = "codigo_de_barras")
-    private String codigoDeBarras;
-
-
+    @Column(name = "codigo_barras", length = 100)
+    private String codigoBarras;
 }
