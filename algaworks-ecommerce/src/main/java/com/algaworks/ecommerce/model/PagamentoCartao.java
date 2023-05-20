@@ -5,22 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
-@Entity
 @Getter
 @Setter
-@Table(name = "pagamento_cartao")
-public class PagamentoCartao extends EntidadeBaseInteger{
+@DiscriminatorValue("cartao")
+@Entity
+public class PagamentoCartao extends Pagamento {
 
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-
-    private StatusPagamento status;
-
-    private String numero;
-
-
+    @Column(name = "numero_cartao", length = 50)
+    private String numeroCartao;
 }

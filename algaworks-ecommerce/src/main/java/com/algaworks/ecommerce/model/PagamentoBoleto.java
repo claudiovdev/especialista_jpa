@@ -6,19 +6,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
-@Table(name = "pagamento_boleto")
-public class PagamentoBoleto extends EntidadeBaseInteger{
+@DiscriminatorValue("boleto")
+@Entity
+public class PagamentoBoleto extends Pagamento {
 
-
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
-    @Column(name = "codigo_de_barras")
-    private String codigoDeBarras;
-
-
+    @Column(name = "codigo_barras", length = 100)
+    private String codigoBarras;
 }
