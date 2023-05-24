@@ -16,6 +16,16 @@ import java.util.List;
 public class PassandoParametrosTest extends EntityManagerTest {
 
     @Test
+    public void passarParametroDate() {
+        String jpql = "select nf from NotaFiscal nf where nf.dataEmissao <= ?1";
+
+        TypedQuery<NotaFiscal> typedQuery = entityManager.createQuery(jpql, NotaFiscal.class);
+        typedQuery.setParameter(1, new Date(), TemporalType.TIMESTAMP);
+
+        List<NotaFiscal> lista = typedQuery.getResultList();
+        Assert.assertTrue(lista.size() == 1);
+    }
+    @Test
     public void passarParametro() {
         String jpql = "select p from Pedido p join p.pagamento pag " +
                 " where p.id = :pedidoId and pag.status = ?1";
