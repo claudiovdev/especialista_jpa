@@ -11,6 +11,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@NamedNativeQuery(name = "produto.listar", query = "select  id, nome, descricao, data_criacao, data_ultima_atualizacao, preco, foto " +
+        " from produto ", resultClass = Produto.class)
 @EntityListeners({ GenericoListener.class })
 @Entity
 @Table(name = "produto",

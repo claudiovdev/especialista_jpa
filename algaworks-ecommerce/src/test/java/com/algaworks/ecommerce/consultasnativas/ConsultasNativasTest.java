@@ -62,8 +62,8 @@ public class ConsultasNativasTest extends EntityManagerTest {
     @Test
     public void usarNamedNativeQuery(){
         String sql = "select  id, nome, descricao, data_criacao, data_ultima_atualizacao, preco, foto " +
-                "from produto p where p.id = :id";
-        Query query = entityManager.createNativeQuery(sql, Produto.class);
+                "from produto p ";
+        Query query = entityManager.createNamedQuery("produto.listar");
 
         List<Produto> lista = query.getResultList();
 
