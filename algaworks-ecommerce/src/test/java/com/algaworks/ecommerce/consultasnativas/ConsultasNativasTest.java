@@ -44,6 +44,34 @@ public class ConsultasNativasTest extends EntityManagerTest {
                 String.format("Produto -> primeiroAtributo: %s, SegundoAtributo: %s", produto.getId(), produto.getNome())
         ));
     }
+
+    @Test
+    public void consultaComParametro(){
+        String sql = "select  id, nome, descricao, data_criacao, data_ultima_atualizacao, preco, foto " +
+                "from produto p where p.id = :id";
+        Query query = entityManager.createNativeQuery(sql, Produto.class);
+        query.setParameter("id", 1);
+
+        List<Produto> lista = query.getResultList();
+
+        lista.stream().forEach(produto -> System.out.println(
+                String.format("Produto -> primeiroAtributo: %s, SegundoAtributo: %s", produto.getId(), produto.getNome())
+        ));
+    }
+
+    @Test
+    public void usarNamedNativeQuery(){
+        String sql = "select  id, nome, descricao, data_criacao, data_ultima_atualizacao, preco, foto " +
+                "from produto p where p.id = :id";
+        Query query = entityManager.createNativeQuery(sql, Produto.class);
+
+        List<Produto> lista = query.getResultList();
+
+        lista.stream().forEach(produto -> System.out.println(
+                String.format("Produto -> primeiroAtributo: %s, SegundoAtributo: %s", produto.getId(), produto.getNome())
+        ));
+    }
+
 }
 
 
